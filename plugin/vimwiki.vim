@@ -4,14 +4,14 @@
 " GetLatestVimScripts: 2226 1 :AutoInstall: vimwiki
 
 
-" Clause: load only onces
+" Clause: load only once
 if exists('g:loaded_vimwiki') || &compatible
   finish
 endif
 let g:loaded_vimwiki = 1
 
 " Set to version number for release:
-let g:vimwiki_version = '2022.12.02'
+let g:vimwiki_version = '2024.01.24'
 
 " Get the directory the script is installed in
 let s:plugin_dir = expand('<sfile>:p:h:h')
@@ -20,7 +20,7 @@ let s:plugin_dir = expand('<sfile>:p:h:h')
 let s:old_cpo = &cpoptions
 set cpoptions&vim
 
-" Save autowriteall varaible state
+" Save autowriteall variable state
 if exists('g:vimwiki_autowriteall')
   let s:vimwiki_autowriteall_saved = g:vimwiki_autowriteall
 else
@@ -366,11 +366,11 @@ command! -count=0 VimwikiTabMakeDiaryNote
 
 command! -count=0 VimwikiMakeYesterdayDiaryNote
       \ call vimwiki#diary#make_note(<count>, 0,
-      \ vimwiki#diary#diary_date_link(localtime(), -1))
+      \ vimwiki#diary#diary_date_link(localtime(), -1, <count>))
 
 command! -count=0 VimwikiMakeTomorrowDiaryNote
       \ call vimwiki#diary#make_note(<count>, 0,
-      \ vimwiki#diary#diary_date_link(localtime(), 1))
+      \ vimwiki#diary#diary_date_link(localtime(), 1, <count>))
 
 command! VimwikiDiaryGenerateLinks
       \ call vimwiki#diary#generate_diary_section()
@@ -399,10 +399,10 @@ nnoremap <silent><script> <Plug>VimwikiTabMakeDiaryNote
     \ :<C-U>call vimwiki#diary#make_note(v:count, 1)<CR>
 nnoremap <silent><script> <Plug>VimwikiMakeYesterdayDiaryNote
     \ :<C-U>call vimwiki#diary#make_note(v:count, 0,
-    \ vimwiki#diary#diary_date_link(localtime(), -1))<CR>
+    \ vimwiki#diary#diary_date_link(localtime(), -1, v:count))<CR>
 nnoremap <silent><script> <Plug>VimwikiMakeTomorrowDiaryNote
     \ :<C-U>call vimwiki#diary#make_note(v:count, 0,
-    \ vimwiki#diary#diary_date_link(localtime(), 1))<CR>
+    \ vimwiki#diary#diary_date_link(localtime(), 1, v:count))<CR>
 
 
 " Set default global key mappings
